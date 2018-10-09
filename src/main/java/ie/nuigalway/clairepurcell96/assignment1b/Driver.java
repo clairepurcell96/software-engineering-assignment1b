@@ -51,17 +51,17 @@ public class Driver {
         
         // add various students to various modules
         softwareEng.register(johnDoe);
+        softwareEng.register(janeDoe);
         softwareEng.register(markSmith);
         softwareEng.register(maryRyan);
         softwareEng.register(ciaraMcCarthy);
+        softwareEng.register(conorOdonnell);
         
         databases.register(janeDoe);
         databases.register(maryRyan);
-        databases.register(conorOdonnell);
         databases.register(ciaraMcCarthy);
         
         machineLearning.register(johnDoe);
-        machineLearning.register(janeDoe);
         machineLearning.register(markSmith);
         machineLearning.register(conorOdonnell);
         
@@ -76,13 +76,34 @@ public class Driver {
         computerScience.addModule(softwareEng);
         computerScience.addModule(databases);
         
+        // register students for courses
+        computerEngineering.register(johnDoe);
+        computerEngineering.register(markSmith);
+        computerEngineering.register(conorOdonnell);
+        computerScience.register(janeDoe);
+        computerScience.register(maryRyan);
+        computerScience.register(ciaraMcCarthy);
+        
+        // print out all courses and associated modules
+        System.out.println("**********************************************");
+        System.out.println("\t\tCourses");
+        System.out.println("**********************************************");
+        System.out.println("Course Name\t\tModules");
+        
+        String courseString = "-----------\t\t-------";
         for (int j=0; j<courses.size(); j++) {
-            System.out.println(courses.get(j).getName() + " - Modules: ");
-            for (int i=0; i<courses.get(j).getModules().size(); i++) {
-                System.out.println(courses.get(j).getModules().get(i).getName());
+            courseString += "\n" + courses.get(j).getName();
+            if (courses.get(j).getModules().size() > 0) {
+                courseString += "\t" + courses.get(j).getModules().get(0).getName();
+                for (int i=1; i<courses.get(j).getModules().size(); i++) {
+                    courseString += "\n\t\t\t" + courses.get(j).getModules().get(i).getName();
+                }
             }
         }
+        System.out.println(courseString);
+        System.out.println("**********************************************");
         
+        // print out all students, usernames, registered modules and registered course
         System.out.println("******************************************************************************************");
         System.out.println("\t\t\t\t\tStudents");
         System.out.println("******************************************************************************************");
@@ -90,11 +111,10 @@ public class Driver {
         System.out.println("----\t\t--------\t\t-------\t\t\t-------");
         
         for (int i=0; i<students.size(); i++) {
-            String studentString = "";
             Student student = students.get(i);
+            String course = "";
+            String studentString = student.getName() + "\t" + student.getUsername();
             // loop through modules and courses to find modules and courses student is enrolled in
-            ArrayList<Student> registeredModules = new ArrayList<Student>();
-            ArrayList<Student> registeredCourses = new ArrayList<Student>();
             ArrayList<String> moduleNames = new ArrayList<String>();
             
             for (int m=0; m<modules.size(); m++) {
@@ -104,21 +124,22 @@ public class Driver {
                     }
                 }
             }
-            // add courses to string
             for (int c=0; c<courses.size(); c++) {
                 for (int s=0; s<courses.get(c).getStudents().size(); s++) {
                     if (courses.get(c).getStudents().get(s) == student) {
-                        
+                        // a student can only be registered for one course
+                        course = courses.get(c).getName();
                     }
                 }
             }
             if (moduleNames.size() > 0) {
                 if (student.getUsername().length() > 12) {
-                    studentString += student.getName() + "\t" + student.getUsername() + "\t" + moduleNames.get(0);
+                    studentString += "\t" + moduleNames.get(0);
                 }
                 else {
-                    studentString += student.getName() + "\t" + student.getUsername() + "\t\t" + moduleNames.get(0);
+                    studentString += "\t\t" + moduleNames.get(0);
                 }
+                studentString += "\t" + course;
                 moduleNames.remove(0);
                 if (moduleNames.size() > 0) {
                     for (int mn=0; mn<moduleNames.size(); mn++) {
