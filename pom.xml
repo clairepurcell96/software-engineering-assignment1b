@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.github.clairepurcell96</groupId>
             <artifactId>software-engineering-assignment1</artifactId>
-            <version>0.3</version>
+            <version>0.4</version>
         </dependency>
     </dependencies>
 </project>

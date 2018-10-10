@@ -24,9 +24,9 @@ public class Driver {
         Student ciaraMcCarthy = new Student("Ciara McCarthy", 21, new DateTime(1996, 11, 17, 5, 20), "98765432");
 
         // create some modules
-        Module softwareEng = new Module("Software Engineering", "CT000");
-        Module databases = new Module("Database Systems", "CT123");
-        Module machineLearning = new Module("Machine Learning", "CT456");
+        CollegeModule softwareEng = new CollegeModule("Software Engineering", "CT000");
+        CollegeModule databases = new CollegeModule("Database Systems", "CT123");
+        CollegeModule machineLearning = new CollegeModule("Machine Learning", "CT456");
 
         // create some courses
         CourseProgramme computerEngineering = new CourseProgramme("Computer Engineering", new DateTime(2015, 9, 1, 9, 0), new DateTime(2019, 5, 20, 16, 0));
@@ -40,7 +40,7 @@ public class Driver {
         students.add(conorOdonnell);
         students.add(ciaraMcCarthy);
         
-        ArrayList<Module> modules = new ArrayList<Module>(3);
+        ArrayList<CollegeModule> modules = new ArrayList<CollegeModule>(3);
         modules.add(softwareEng);
         modules.add(databases);
         modules.add(machineLearning);
